@@ -3,7 +3,7 @@ from github import Github
 import requests
 import jinja2
 
-GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
+GITHUB_TOKEN = os.environ['MY_GH_TOKEN']
 ORG = "daily-ultimate-game"
 TEMPLATE_MARKER = "game.json"
 
