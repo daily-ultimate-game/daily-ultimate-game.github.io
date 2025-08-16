@@ -3,7 +3,7 @@ from github import Github
 import requests
 import jinja2
 
-TOKEN = os.environ["GH_TOKEN"]
+TOKEN = os.getenv("GH_TOKEN")
 ORG = "daily-ultimate-game"
 TEMPLATE_MARKER = "setting/game.json"
 DEFAULT_BRANCH = "main"
@@ -174,26 +174,28 @@ body {
 <div class="grid" id="grid">
 {% for game in games %}
     {% if game.title != "ultimate-game-template" %}
-    <article class="card" data-title="{{ game.title }}" data-desc="{{ game.description|e }}" data-repo="{{ game.repo_url }}" data-name="{{ game.title|replace(' ', '-') }}">
-        <div class="card-image-wrapper" aria-hidden="true">
-            <img loading="lazy" src="{{ game.cover_image }}" alt="{{ game.title }} cover" />
-        </div>
-        <div class="card-content">
-            <div style="display:flex;gap:.6rem;align-items:center">
-                <div class="card-title">{{ game.title }}</div>
+        <article class="card" data-title="{{ game.title }}" data-desc="{{ game.description|e }}" data-repo="{{ game.repo_url }}" data-name="{{ game.title|replace(' ', '-') }}">
+            <a href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank" rel="noopener" style="text-decoration:none">
+            <div class="card-image-wrapper" aria-hidden="true">
+                <img loading="lazy" src="{{ game.cover_image }}" alt="{{ game.title }} cover" />
             </div>
-            <div class="card-meta">
-                <div>{{ game.author or '' }}</div>
-                <div style="opacity:.45">•</div>
-                <div class="muted">{{ game.tags|join(', ') if game.tags else '' }}</div>
+            <div class="card-content">
+                <div style="display:flex;gap:.6rem;align-items:center">
+                    <div class="card-title">{{ game.title }}</div>
+                </div>
+                <div class="card-meta">
+                    <div>{{ game.author or '' }}</div>
+                    <div class="muted">{{ game.tags|join(', ') if game.tags else '' }}</div>
+                </div>
+                <div class="card-desc">{{ game.description }}</div>
+                <div class="actions">
+                    <a class="page-link" href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank" rel="noopener">View</a>
+                    <button class="ghost-btn" data-action="open" aria-label="Open details for {{ game.title }}">Details</button>
+                </div>
             </div>
-            <div class="card-desc">{{ game.description }}</div>
-            <div class="actions">
-                <a class="page-link" href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank" rel="noopener">View</a>
-                <button class="ghost-btn" data-action="open" aria-label="Open details for {{ game.title }}">Details</button>
-            </div>
-        </div>
+            </a>
     </article>
+
     {% endif %}
 {% endfor %}
 </div>
@@ -358,9 +360,17 @@ document.addEventListener('keydown', (e)=>{
 // small performance: lazy place-holder blur-up effect (already using loading=lazy)
 qa('img[loading="lazy"]').forEach(img=>{
     img.style.transition='filter .6s, opacity .6s, transform .6s';
-    img.style.filter='blur(8px) saturate(.8)';
-    img.style.opacity='0.92';
-    img.addEventListener('load', ()=>{ img.style.filter='none'; img.style.opacity='1'; });
+    if (!img.complete) {
+        img.style.filter='blur(8px) saturate(.8)';
+        img.style.opacity='0.92';
+        img.addEventListener('load', ()=>{
+            img.style.filter='none';
+            img.style.opacity='1';
+        });
+    } else {
+        img.style.filter='none';
+        img.style.opacity='1';
+    }
 });
 
 // initial apply
