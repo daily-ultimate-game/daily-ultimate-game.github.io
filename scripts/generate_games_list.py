@@ -88,7 +88,7 @@ body {
     color: #e3e3e3;
     margin-bottom: 1.2rem;
 }
-.repo-link {
+.page-link {
     display: inline-block;
     padding: 0.5rem 1.1rem;
     background: linear-gradient(90deg,#21d4fd,#b721ff);
@@ -100,7 +100,7 @@ body {
     transition: background 0.2s;
     box-shadow: 0 2px 8px rgba(33, 212, 253, 0.1);
 }
-.repo-link:hover {
+.page-link:hover {
     background: linear-gradient(90deg,#b721ff,#21d4fd);
 }
 @media (max-width: 600px) {
@@ -114,14 +114,16 @@ body {
 <div class="header">🎮 Ultimate Game Gallery</div>
 <div class="grid">
 {% for game in games %}
+    {% if game.title != "ultimate-game-template" %}
     <div class="card">
         <img src="{{ game.cover_image }}" alt="{{ game.title }} cover">
         <div class="card-content">
             <div class="card-title">{{ game.title }}</div>
             <div class="card-desc">{{ game.description }}</div>
-            <a class="repo-link" href="{{ game.repo_url }}" target="_blank">View on GitHub</a>
+            <a class="page-link" href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank">View Page</a>
         </div>
     </div>
+    {% endif %}
 {% endfor %}
 </div>
 </body>
