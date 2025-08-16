@@ -22,7 +22,7 @@ jobs:
       - name: Generate index.html
         env:
           GH_TOKEN: ${{ secrets.MY_GH_TOKEN }}
-        run: python .github/scripts/generate_index.py
+        run: python .github/scripts/generate_games_list.py
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
