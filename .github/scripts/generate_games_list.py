@@ -35,118 +35,20 @@ template = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <title>🎮 Ultimate Game Gallery</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
 <style>
 body {
     background: #181c24;
     min-height: 100vh;
-    font-family: 'Montserrat', 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
     color: #fff;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     position: relative;
-}
-.header {
-    text-align: center;
-    padding: 2.5rem 0 1.5rem 0;
-    font-size: 2.8rem;
-    font-family: 'Orbitron', 'Montserrat', sans-serif;
-    font-weight: bold;
-    letter-spacing: 2.5px;
-    background: linear-gradient(90deg,#f7971e,#ffd200,#21d4fd,#b721ff,#ff006a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-move 3s linear infinite alternate;
-}
-@keyframes gradient-move {
-    0% { background-position: 0%;}
-    100% { background-position: 100%;}
-}
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap: 2.2rem;
-    padding: 2.5rem 2vw 3rem 2vw;
-    z-index: 1;
-    position: relative;
-}
-.card {
-    background: rgba(30, 30, 40, 0.98);
-    border-radius: 22px;
-    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.55), 0 0 0 2px #21d4fd33;
-    overflow: hidden;
-    transition: transform 0.22s, box-shadow 0.22s, border 0.22s;
-    position: relative;
-    border: 2px solid transparent;
-    cursor: pointer;
-}
-.card:hover {
-    transform: translateY(-10px) scale(1.035) rotate(-1deg);
-    box-shadow: 0 8px 40px 0 #21d4fd55, 0 0 0 4px #ffd20055;
-    border: 2px solid #ffd200;
-    z-index: 2;
-}
-.card img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    display: block;
-    border-bottom: 2px solid #21d4fd55;
-    background: #232526;
-    transition: filter 0.2s;
-}
-.card:hover img {
-    filter: brightness(1.08) saturate(1.2) drop-shadow(0 0 12px #ffd20088);
-}
-.card-content {
-    padding: 1.6rem 1.3rem 1.2rem 1.3rem;
-}
-.card-title {
-    font-size: 1.35rem;
-    font-family: 'Orbitron', 'Montserrat', sans-serif;
-    font-weight: bold;
-    margin-bottom: 0.7rem;
-    color: #ffd200;
-    letter-spacing: 1.2px;
-    text-shadow: 0 2px 8px #23252688;
-}
-.card-desc {
-    font-size: 1.04rem;
-    color: #e3e3e3;
-    margin-bottom: 1.3rem;
-    min-height: 48px;
-    font-family: 'Montserrat', sans-serif;
-}
-.page-link {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background: linear-gradient(90deg,#21d4fd,#b721ff,#ff006a);
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 1.1px;
-    font-family: 'Montserrat', 'Orbitron', sans-serif;
-    transition: background 0.18s, box-shadow 0.18s;
-    box-shadow: 0 2px 12px rgba(33, 212, 253, 0.13);
-    border: none;
-    outline: none;
-    font-size: 1.05rem;
-}
-.page-link:hover {
-    background: linear-gradient(90deg,#b721ff,#21d4fd,#ffd200);
-    box-shadow: 0 4px 18px #ffd20055;
-    color: #232526;
-}
-@media (max-width: 700px) {
-    .header { font-size: 1.5rem; }
-    .card img { height: 110px; }
-    .card-content { padding: 1rem; }
-    .grid { gap: 1.2rem; padding: 1.2rem 1vw 2rem 1vw;}
 }
 .particles {
     position: fixed;
@@ -154,25 +56,170 @@ body {
     pointer-events: none;
     z-index: 0;
 }
+:root{
+    --bg:#0f1115;
+    --card:#0f1720;
+    --muted:#9aa4b2;
+    --accent1:#21d4fd;
+    --accent2:#b721ff;
+    --glow: 0 8px 40px rgba(33,212,253,0.06), 0 0 60px rgba(183,33,255,0.03);
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+*{box-sizing:border-box}
+.header{
+    text-align:center;padding:2.2rem 1rem 1rem 1rem;
+    font-family:Orbitron,Inter,monospace;font-weight:800;
+    font-size:2.6rem;letter-spacing:1px;
+    background:linear-gradient(90deg,#ff006a,#b721ff,#21d4fd,#ffd200);
+    background-size:200% 200%;
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    animation:gradientShift 8s ease infinite;
+    filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+}
+.controls{
+    display:flex;gap:.75rem;align-items:center;justify-content:center;
+    flex-wrap:wrap;margin:0 1rem 1rem 1rem;
+}
+.search{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    padding:.55rem .75rem;border-radius:999px;min-width:280px;
+    display:flex;align-items:center;gap:.5rem;color:var(--muted)
+}
+.search input{
+    background:transparent;border:0;outline:0;color:inherit;font-size:0.95rem;width:280px;
+}
+.select, .chip{
+    background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    color:var(--muted);padding:.5rem .75rem;border-radius:10px;font-weight:600;
+}
+.grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;padding:1rem 2vw 3.5rem 2vw;
+    perspective:1200px;
+}
+@media (max-width:1600px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.grid{grid-template-columns:1fr;gap:.8rem;padding:1rem}}
+.card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.04);
+    transition:transform .35s cubic-bezier(.2,.9,.2,1),box-shadow .25s;transform-style:preserve-3d;
+    will-change:transform;backdrop-filter: blur(6px);
+    display:flex;flex-direction:column;cursor:pointer;
+}
+.card::before{
+    content:"";position:absolute;inset:0;
+    pointer-events:none;
+    background:linear-gradient(120deg, rgba(33,212,253,0.02), rgba(183,33,255,0.02));
+    mix-blend-mode:screen;opacity:0;transition:opacity .25s;
+}
+.card:hover{transform:translateY(-10px) rotateX(6deg) scale(1.03);box-shadow:var(--glow);z-index:2}
+.card:hover::before{opacity:1}
+.card-image-wrapper{width:100%;aspect-ratio:16/10;background:#0b0c0f;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.03)}
+.card-image-wrapper img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .45s,opacity .3s}
+.card:hover .card-image-wrapper img{transform:scale(1.02) rotate(-0.2deg)}
+.card-content{padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.card-title{font-weight:800;font-size:1.04rem;letter-spacing:.6px;
+    background:linear-gradient(90deg,#ffe100,#ff004c,#6b6bff);background-size:200% 200%;animation:gradientShift 6s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    position:relative}
+.card-meta{display:flex;gap:.6rem;align-items:center;font-size:.84rem;color:var(--muted)}
+.badge{padding:.25rem .5rem;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);font-weight:700}
+.card-desc{color:var(--muted);font-size:.92rem;min-height:3.1rem}
+.actions{display:flex;gap:.6rem;margin-top:auto;align-items:center}
+.page-link{padding:.5rem .85rem;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#071018;text-decoration:none;font-weight:800;box-shadow:var(--glow)}
+.ghost-btn{padding:.45rem .7rem;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700}
+
+/* fade-in */
+.grid .card{opacity:0;transform:translateY(18px) scale(.995);animation:fadeIn .6s forwards}
+.grid .card:nth-child(odd){animation-delay:.06s}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* modal */
+.modal{position:fixed;inset:0;background:linear-gradient(0deg, rgba(2,6,23,0.7), rgba(2,6,23,0.85));display:none;align-items:center;justify-content:center;padding:2rem;z-index:999}
+.modal.open{display:flex}
+.modal-card{width:min(1100px,96vw);background:linear-gradient(180deg,#0b0e13, rgba(11,14,19,0.95));border-radius:14px;overflow:hidden;display:flex;gap:1rem;box-shadow:var(--glow);border:1px solid rgba(255,255,255,0.03)}
+.modal-media{flex:1;min-width:360px;background:#05060a;display:flex;align-items:center;justify-content:center}
+.modal-media img{width:100%;height:100%;object-fit:contain}
+.modal-info{flex:1;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem}
+.close-x{margin-left:auto;background:transparent;border:0;color:var(--muted);font-weight:800}
+.footer{color:var(--muted);text-align:center;padding:1.2rem 0;font-size:.9rem}
 </style>
 </head>
 <body>
 <canvas class="particles"></canvas>
 <div class="header">🎮 Ultimate Game Gallery</div>
-<div class="grid">
+
+<div class="controls" role="region" aria-label="controls">
+    <div class="search" title="Search games">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:.85"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"/></svg>
+        <input id="q" placeholder="Search by title or description…" aria-label="Search games" />
+    </div>
+    <div class="select" title="Sort">
+        Sort:
+        <select id="sort" style="background:transparent;border:0;color:var(--muted);font-weight:700;margin-left:.5rem">
+            <option value="alpha">A → Z</option>
+            <option value="rev">Z → A</option>
+            <option value="new">Newest (by repo name)</option>
+        </select>
+    </div>
+    <button id="reset" class="ghost-btn" title="Reset filters">Reset</button>
+</div>
+
+<div class="grid" id="grid">
 {% for game in games %}
     {% if game.title != "ultimate-game-template" %}
-    <div class="card">
-        <img src="{{ game.cover_image }}" alt="{{ game.title }} cover">
-        <div class="card-content">
-            <div class="card-title">{{ game.title }}</div>
-            <div class="card-desc">{{ game.description }}</div>
-            <a class="page-link" href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank">View Page</a>
+    <article class="card" data-title="{{ game.title }}" data-desc="{{ game.description|e }}" data-repo="{{ game.repo_url }}" data-name="{{ game.title|replace(' ', '-') }}">
+        <div class="card-image-wrapper" aria-hidden="true">
+            <img loading="lazy" src="{{ game.cover_image }}" alt="{{ game.title }} cover" />
         </div>
-    </div>
+        <div class="card-content">
+            <div style="display:flex;gap:.6rem;align-items:center">
+                <div class="card-title">{{ game.title }}</div>
+            </div>
+            <div class="card-meta">
+                <div>{{ game.author or '' }}</div>
+                <div style="opacity:.45">•</div>
+                <div class="muted">{{ game.tags|join(', ') if game.tags else '' }}</div>
+            </div>
+            <div class="card-desc">{{ game.description }}</div>
+            <div class="actions">
+                <a class="page-link" href="https://daily-ultimate-game.github.io/{{ game.title | replace(' ', '-') }}/" target="_blank" rel="noopener">View</a>
+                <button class="ghost-btn" data-action="open" aria-label="Open details for {{ game.title }}">Details</button>
+            </div>
+        </div>
+    </article>
     {% endif %}
 {% endfor %}
 </div>
+
+<!-- Modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document">
+        <div class="modal-media">
+            <img id="modal-img" src="" alt="" />
+        </div>
+        <div class="modal-info">
+            <div style="display:flex;align-items:flex-start;gap:.6rem">
+                <h2 id="modal-title" style="margin:0"></h2>
+                <button class="close-x" id="modal-close" aria-label="Close">✕</button>
+            </div>
+            <div id="modal-desc" style="color:var(--muted)"></div>
+            <div style="margin-top:auto;display:flex;gap:.6rem;align-items:center">
+                <a id="modal-open" class="page-link" href="#" target="_blank" rel="noopener">Open page</a>
+                <a id="modal-repo" class="ghost-btn" href="#" target="_blank" rel="noopener">Repository</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">Made with ✨ • Tip: hover a card and move your mouse for a cool tilt effect</div>
+
 <script>
 // Simple animated particles background
 const canvas = document.querySelector('.particles');
@@ -205,6 +252,119 @@ function draw() {
     requestAnimationFrame(draw);
 }
 draw();
+</script>
+<script>
+// lightweight utilities
+const q = (s, ctx=document) => ctx.querySelector(s);
+const qa = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
+
+// Search & Sort
+const grid = q('#grid');
+const cards = qa('.card');
+const input = q('#q');
+const sort = q('#sort');
+const reset = q('#reset');
+
+function normalize(str){ return (str||'').toString().toLowerCase(); }
+
+function applyFilters(){
+    const term = normalize(input.value);
+    const mode = sort.value;
+    let arr = cards.slice();
+    if(term) arr.forEach(c => {
+        const t = normalize(c.dataset.title + ' ' + c.dataset.desc + ' ' + (c.dataset.repo||''));
+        c.style.display = t.includes(term) ? '' : 'none';
+    });
+    if(mode !== 'alpha'){
+        arr.sort((a,b)=>{
+            const A = normalize(a.dataset.title), B = normalize(b.dataset.title);
+            if(mode==='rev') return B.localeCompare(A);
+            if(mode==='new') return a.dataset.name.localeCompare(b.dataset.name);
+            return A.localeCompare(B);
+        });
+    } else {
+        arr.sort((a,b)=>normalize(a.dataset.title).localeCompare(normalize(b.dataset.title)));
+    }
+    // reflow DOM in new order for visible cards
+    arr.forEach(c => { if(c.style.display !== 'none') grid.appendChild(c); });
+}
+
+input.addEventListener('input', applyFilters);
+sort.addEventListener('change', applyFilters);
+reset.addEventListener('click', ()=>{ input.value=''; sort.value='alpha'; applyFilters(); });
+
+// Tilt effect with depth-sensitive image parallax
+qa('.card').forEach(card=>{
+    const img = card.querySelector('img');
+    card.addEventListener('pointermove', e=>{
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left)/r.width;
+        const py = (e.clientY - r.top)/r.height;
+        const rx = (py - 0.5)*12; // rotateX
+        const ry = (px - 0.5)*-14; // rotateY
+        card.style.transform = `translateY(-10px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
+        // slight parallax on image for depth
+        if(img) img.style.transform = `translate3d(${(px-0.5)*8}px, ${(py-0.5)*-8}px, 0) scale(1.05)`;
+    });
+    card.addEventListener('pointerleave', ()=>{ card.style.transform=''; if(img) img.style.transform=''; });
+});
+
+// Modal
+const modal = q('#modal');
+const modalImg = q('#modal-img');
+const modalTitle = q('#modal-title');
+const modalDesc = q('#modal-desc');
+const modalOpen = q('#modal-open');
+const modalRepo = q('#modal-repo');
+const modalClose = q('#modal-close');
+
+qa('button[data-action="open"]').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const card = e.currentTarget.closest('.card');
+        openModalFromCard(card);
+    });
+});
+qa('.card').forEach(c=>{
+    c.querySelector('.card-image-wrapper').addEventListener('dblclick', ()=>openModalFromCard(c));
+});
+
+function openModalFromCard(card){
+    const title = card.dataset.title;
+    const desc = card.dataset.desc;
+    const img = card.querySelector('img').src;
+    const page = `https://daily-ultimate-game.github.io/${card.dataset.name}/`;
+    const repo = card.dataset.repo;
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    modalImg.src = img;
+    modalImg.alt = title + ' cover';
+    modalOpen.href = page;
+    modalRepo.href = repo;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+}
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (ev)=>{ if(ev.target === modal) closeModal(); });
+function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+// keyboard
+document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeModal();
+    if(e.key === 'k' && (e.ctrlKey||e.metaKey)){ e.preventDefault(); input.focus(); }
+});
+
+// small performance: lazy place-holder blur-up effect (already using loading=lazy)
+qa('img[loading="lazy"]').forEach(img=>{
+    img.style.transition='filter .6s, opacity .6s, transform .6s';
+    img.style.filter='blur(8px) saturate(.8)';
+    img.style.opacity='0.92';
+    img.addEventListener('load', ()=>{ img.style.filter='none'; img.style.opacity='1'; });
+});
+
+// initial apply
+applyFilters();
 </script>
 </body>
 </html>
