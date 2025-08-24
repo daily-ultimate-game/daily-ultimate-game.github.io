@@ -35,6 +35,7 @@ template = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="google-adsense-account" content="ca-pub-4608265121738300">
 <meta charset="utf-8" />
 <title>🎮 Ultimate Game Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
