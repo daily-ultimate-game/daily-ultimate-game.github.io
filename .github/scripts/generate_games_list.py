@@ -36,6 +36,8 @@ template = """
 <html lang="en">
 <head>
 <meta name="google-adsense-account" content="ca-pub-4608265121738300">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4608265121738300"
+     crossorigin="anonymous"></script>
 <meta charset="utf-8" />
 <title>🎮 Ultimate Game Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
